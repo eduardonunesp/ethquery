@@ -1,14 +1,35 @@
 # ethquery
 
-Ethquery is a command to make easy the task of request and debug Ethereum JSON RPC commands on command line, it supports multiple configurations and JSON RPC commands without the needing of long JSON RPC strings using CURL command
+`Ethquery` is a command to make easy the task of request and debug `Ethereum JSON RPC` commands on command line, it supports multiple configurations and JSON RPC commands without the needing of long JSON RPC strings using `CURL` command
 
-# Install
+## Comparing CURL vs Ethquery
+
+```bash
+# Curl way get block by number
+curl -X POST --data '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x0",true]}' http://localhost:8545
+
+# Curl way get block number
+curl -X POST --data '{"id":0,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}' http://localhost:8545
+```
+
+```bash
+# Ethquery way get block by number
+ethquery blockbynumber 0x0
+
+# Or you can use decimal values here
+ethquery blockbynumber 47 # auto converted to 0x2f
+
+# Ethquery way get block number
+ethquery blocknumber
+```
+
+## Install
 
 ```bash
 go get -u github.com/eduardonunesp/ethquery
 ```
 
-# Configuring
+## Configuring
 
 The first use requires to add at least one configuration which will save the configurations on home directory using the path `~/.ethquery/config`
 
@@ -37,7 +58,7 @@ ethquery configuration list
 ethquery configuration current ganache
 ```
 
-# Commands
+## Commands
 
 ```bash
 # List commands available by type ethquery [Enter]
