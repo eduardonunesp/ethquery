@@ -34,7 +34,7 @@ go get -u github.com/eduardonunesp/ethquery
 The first use requires to add at least one configuration which will save the configurations on home directory using the path `~/.ethquery/config`
 
 ```bash
-# Adding ganache configuration
+# Adding ganache and loom configurations
 ethquery configuration new ganache http://localhost:8545
 ethquery configuration new loom http://localhost:46658
 ```
@@ -51,7 +51,7 @@ ethquery configuration list
 +---------+------------------------+---------+
 ```
 
-> The CURRENT means the the configuration used at the moment
+> The CURRENT means the configuration used at the moment
 
 ```bash
 # Switching current configuration
@@ -85,6 +85,36 @@ You can combine commands with the tool [jq](https://github.com/stedolan/jq) whic
 ethquery blockbynumber 0x0 | jq .result.hash
 "0x7b86a1ff2c4aa712bbfb51c07be05ab82a1a0d9aeaeab3b1d02c3695708a56af"
 ```
+
+## Commands available
+
+- [ ] eth_accounts
+- [x] eth_blockNumber
+- [ ] eth_call
+- [ ] eth_estimateGas
+- [ ] eth_gasPrice
+- [x] eth_getBlockByHash
+- [x] eth_getBlockByNumber
+- [x] eth_getCode
+- [ ] eth_getFilterChanges
+- [ ] eth_getLogs
+- [x] eth_getTransactionByHash
+- [x] eth_getTransactionReceipt
+- [ ] eth_newBlockFilter
+- [ ] eth_newFilter
+- [ ] eth_newPendingTransactionFilter
+- [ ] eth_sendTransaction
+- [ ] eth_subscribe
+- [ ] eth_uninstallFilter
+- [ ] eth_unsubscribe
+- [ ] net_version
+- [ ] net_peerCount (Returns the current ethereum protocol version)
+- [ ] eth_syncing (Returns an object with data about the sync status or false)
+- [ ] eth_coinbase (Returns the client coinbase address)
+- [ ] web3_clientVersion (Returns the current client version)
+- [ ] eth_getTransactionCount (Returns the number of transactions sent from an address)
+- [ ] eth_getBlockTransactionCountByHash (Returns the number of transactions in a block from a block matching the given block hash)
+- [ ] eth_getBlockTransactionCountByNumber (Returns the number of transactions in a block matching the given block number)
 
 ## LICENSE
 Copyright (c) 2015, Eduardo Nunes Pereira
