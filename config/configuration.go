@@ -1,5 +1,7 @@
 package config
 
+import "fmt"
+
 type Configuration struct {
 	Name    string `yaml:"name"`
 	URL     string `yaml:"url"`
@@ -18,12 +20,12 @@ func NewConfigurations(configurations []Configuration) *ConfigurationList {
 	return &ConfigurationList{configurations}
 }
 
-func (cs ConfigurationList) GetCurrent() Configuration {
+func (cs ConfigurationList) GetCurrent() (*Configuration, error) {
 	for _, configuration := range cs.Configurations {
 		if configuration.Current {
-			return configuration
+			return &configuration, nil
 		}
 	}
 
-	panic("Current config not found")
+	return nil, fmt.Errorf("Current configuration not found, please command configuration")
 }

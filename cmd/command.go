@@ -15,10 +15,14 @@ import (
 var blockNumberCmd = &cobra.Command{
 	Use:   "blocknumber",
 	Short: "Get current block height",
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
-		currentConfiguration := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent()
+		if err != nil {
+			return err
+		}
 		postRequest(currentConfiguration.URL, "eth_blockNumber", []string{})
+		return nil
 	},
 }
 
@@ -26,7 +30,7 @@ var blockByNumberCmd = &cobra.Command{
 	Use:   "blockbynumber <block number hex|block number decimal>",
 	Short: "Get current block by number",
 	Args:  cobra.MinimumNArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		blockNumber := args[0]
 		var full string
 
@@ -35,12 +39,16 @@ var blockByNumberCmd = &cobra.Command{
 		}
 
 		configurationList := config.Load()
-		currentConfiguration := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent()
+		if err != nil {
+			return err
+		}
 		postRequest(
 			currentConfiguration.URL,
 			"eth_getBlockByNumber",
 			[]string{hexify(blockNumber), full},
 		)
+		return nil
 	},
 }
 
@@ -48,7 +56,7 @@ var blockByHashCmd = &cobra.Command{
 	Use:   "blockbyhash <block hash>",
 	Short: "Get current block by hash",
 	Args:  cobra.MinimumNArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		blockHash := args[0]
 		var full string
 
@@ -57,12 +65,16 @@ var blockByHashCmd = &cobra.Command{
 		}
 
 		configurationList := config.Load()
-		currentConfiguration := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent()
+		if err != nil {
+			return err
+		}
 		postRequest(
 			currentConfiguration.URL,
 			"eth_getBlockByHash",
 			[]string{blockHash, full},
 		)
+		return nil
 	},
 }
 
@@ -70,15 +82,19 @@ var codeCmd = &cobra.Command{
 	Use:   "code <contract address>",
 	Short: "Get hex code for a contract",
 	Args:  cobra.MinimumNArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		contractAddress := args[0]
 		configurationList := config.Load()
-		currentConfiguration := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent()
+		if err != nil {
+			return err
+		}
 		postRequest(
 			currentConfiguration.URL,
 			"eth_getCode",
 			[]string{contractAddress},
 		)
+		return nil
 	},
 }
 
@@ -86,15 +102,19 @@ var tranactionByHashCmd = &cobra.Command{
 	Use:   "transactionbyhash <transaction hash>",
 	Short: "Get transaction information",
 	Args:  cobra.MinimumNArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		transactionHash := args[0]
 		configurationList := config.Load()
-		currentConfiguration := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent()
+		if err != nil {
+			return err
+		}
 		postRequest(
 			currentConfiguration.URL,
 			"eth_getTransactionByHash",
 			[]string{transactionHash},
 		)
+		return nil
 	},
 }
 
@@ -102,15 +122,19 @@ var transactionReceipt = &cobra.Command{
 	Use:   "transactionreceipt <transaction hash>",
 	Short: "Get transaction receipt",
 	Args:  cobra.MinimumNArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		transactionHash := args[0]
 		configurationList := config.Load()
-		currentConfiguration := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent()
+		if err != nil {
+			return err
+		}
 		postRequest(
 			currentConfiguration.URL,
 			"eth_getTransactionReceipt",
 			[]string{transactionHash},
 		)
+		return nil
 	},
 }
 
