@@ -88,11 +88,11 @@ ethquery blockbynumber 0x0 | jq .result.hash
 
 ## Commands available
 
-- [ ] eth_accounts
+- [x] eth_accounts
 - [x] eth_blockNumber
 - [ ] eth_call
 - [ ] eth_estimateGas
-- [ ] eth_gasPrice
+- [x] eth_gasPrice
 - [x] eth_getBlockByHash
 - [x] eth_getBlockByNumber
 - [x] eth_getCode
@@ -107,12 +107,12 @@ ethquery blockbynumber 0x0 | jq .result.hash
 - [ ] eth_subscribe
 - [ ] eth_uninstallFilter
 - [ ] eth_unsubscribe
-- [ ] net_version
+- [x] net_version
 - [ ] net_peerCount (Returns the current ethereum protocol version)
 - [ ] eth_syncing (Returns an object with data about the sync status or false)
 - [ ] eth_coinbase (Returns the client coinbase address)
 - [ ] web3_clientVersion (Returns the current client version)
-- [ ] eth_getTransactionCount (Returns the number of transactions sent from an address)
+- [x] eth_getTransactionCount (Returns the number of transactions sent from an address)
 - [ ] eth_getBlockTransactionCountByHash (Returns the number of transactions in a block from a block matching the given block hash)
 - [ ] eth_getBlockTransactionCountByNumber (Returns the number of transactions in a block matching the given block number)
 
