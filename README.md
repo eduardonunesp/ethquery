@@ -62,20 +62,28 @@ ethquery configuration current ganache
 
 ```bash
 # List commands available by type ethquery [Enter]
+$ ethquery
 
-ethquery
 Usage:
   ethquery [command]
 
 Available Commands:
-  blockbyhash        Get current block by hash
-  blockbynumber      Get current block by number
-  blocknumber        Get current block height
-  code               Get hex code for a contract
+  accounts           Returns a list of addresses owned by client
+  blockbyhash        Returns the information about a transaction requested by transaction hash
+  blockbynumber      Returns information about a block by block number
+  blocknumber        Returns the number of most recent block
+  code               Returns code at a given address
   configuration      Manage configurations
+  gasprice           Returns the current price per gas in wei
   help               Help about any command
-  transactionbyhash  Get transaction information
-  transactionreceipt Get transaction receipt
+  transactionbyhash  Returns the information about a transaction requested by transaction hash
+  transactioncount   Returns the number of transactions sent from an address
+  transactionreceipt Returns the receipt of a transaction by transaction hash
+  version            Returns the current network id
+
+Flags:
+  -h, --help      help for ethquery
+  -v, --verbose   Verbose output
 ```
 
 You can combine commands with the tool [jq](https://github.com/stedolan/jq) which is a great command line JSON processor
