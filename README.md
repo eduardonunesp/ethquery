@@ -58,6 +58,15 @@ ethquery configuration list
 ethquery configuration current ganache
 ```
 
+## Override current configuration
+
+Use another configuration on the command without needing of switch configuration just use the flag `-c` with the configuration name
+
+```bash
+# Using the loom configuration just for this command
+ethquery blockbynumber 0x0 -c loom
+```
+
 ## Commands
 
 ```bash
@@ -82,8 +91,9 @@ Available Commands:
   version            Returns the current network id
 
 Flags:
-  -h, --help      help for ethquery
-  -v, --verbose   Verbose output
+  -c, --configuration string   force use another configuration for current command
+  -h, --help                   help for ethquery
+  -v, --verbose                verbose output
 ```
 
 You can combine commands with the tool [jq](https://github.com/stedolan/jq) which is a great command line JSON processor

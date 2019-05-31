@@ -15,8 +15,8 @@ var verboseFlag bool
 var configurationFlag string
 
 func Execute() {
-	rootCmd.PersistentFlags().BoolVarP(&verboseFlag, "verbose", "v", false, "Verbose output")
-	rootCmd.PersistentFlags().StringVarP(&configurationFlag, "configuration", "c", "", "Force use another configuration for current command")
+	rootCmd.PersistentFlags().BoolVarP(&verboseFlag, "verbose", "v", false, "verbose output")
+	rootCmd.PersistentFlags().StringVarP(&configurationFlag, "configuration", "c", "", "force use another configuration for current command")
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
