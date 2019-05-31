@@ -11,10 +11,12 @@ var rootCmd = &cobra.Command{
 	Use: "ethquery",
 }
 
-var verboseFlag bool = false
+var verboseFlag bool
+var configurationFlag string
 
 func Execute() {
 	rootCmd.PersistentFlags().BoolVarP(&verboseFlag, "verbose", "v", false, "Verbose output")
+	rootCmd.PersistentFlags().StringVarP(&configurationFlag, "configuration", "c", "", "Force use another configuration for current command")
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)

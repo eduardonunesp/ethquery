@@ -10,7 +10,7 @@ var blockNumberCmd = &cobra.Command{
 	Short: "Returns the number of most recent block",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err
@@ -41,7 +41,7 @@ var blockByNumberCmd = &cobra.Command{
 		}
 
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 		if err != nil {
 			return err
 		}
@@ -70,7 +70,7 @@ var blockByHashCmd = &cobra.Command{
 		}
 
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err
@@ -93,7 +93,7 @@ var codeCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		contractAddress := args[0]
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err
@@ -116,7 +116,7 @@ var tranactionByHashCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		transactionHash := args[0]
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err
@@ -139,7 +139,7 @@ var transactionReceiptCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		transactionHash := args[0]
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err
@@ -161,7 +161,7 @@ var accountsCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err
@@ -183,7 +183,7 @@ var netVersionCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err
@@ -205,7 +205,7 @@ var gasPriceCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err
@@ -228,7 +228,7 @@ var transactionCountCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		address := args[0]
 		configurationList := config.Load()
-		currentConfiguration, err := configurationList.GetCurrent()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
 		if err != nil {
 			return err

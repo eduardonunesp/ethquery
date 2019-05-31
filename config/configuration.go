@@ -20,10 +20,16 @@ func NewConfigurations(configurations []Configuration) *ConfigurationList {
 	return &ConfigurationList{configurations}
 }
 
-func (cs ConfigurationList) GetCurrent() (*Configuration, error) {
+func (cs ConfigurationList) GetCurrent(overwriteCurrent string) (*Configuration, error) {
 	for _, configuration := range cs.Configurations {
-		if configuration.Current {
-			return &configuration, nil
+		if overwriteCurrent != "" {
+			if configuration.Name == overwriteCurrent {
+				return &configuration, nil
+			}
+		} else {
+			if configuration.Current {
+				return &configuration, nil
+			}
 		}
 	}
 
