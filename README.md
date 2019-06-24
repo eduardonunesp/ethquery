@@ -81,6 +81,7 @@ Available Commands:
   blockbyhash        Returns the information about a transaction requested by transaction hash
   blockbynumber      Returns information about a block by block number
   blocknumber        Returns the number of most recent block
+  call               Static call a function on contract
   code               Returns code at a given address
   configuration      Manage configurations
   gasprice           Returns the current price per gas in wei
@@ -94,6 +95,7 @@ Flags:
   -c, --configuration string   force use another configuration for current command
   -h, --help                   help for ethquery
   -v, --verbose                verbose output
+
 ```
 
 You can combine commands with the tool [jq](https://github.com/stedolan/jq) which is a great command line JSON processor
