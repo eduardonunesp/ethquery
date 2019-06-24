@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/eduardonunesp/ethquery/config"
 	"github.com/spf13/cobra"
 )
@@ -244,6 +246,31 @@ var transactionCountCmd = &cobra.Command{
 	},
 }
 
+var dataFlag string
+var toAddressFlag string
+var callCmd = &cobra.Command{
+	Use:   "call",
+	Short: "Static call a function on contract",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		configurationList := config.Load()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
+
+		if err != nil {
+			return err
+		}
+
+		postRequest(
+			currentConfiguration.URL,
+			"eth_call",
+			[]string{
+				fmt.Sprintf(`{"to":"%s", "data": "%s"}`, toAddressFlag, dataFlag),
+			},
+		)
+
+		return nil
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(
 		blockNumberCmd,
@@ -256,5 +283,9 @@ func init() {
 		netVersionCmd,
 		gasPriceCmd,
 		transactionCountCmd,
+		callCmd,
 	)
+
+	callCmd.Flags().StringVarP(&toAddressFlag, "to", "t", "", "to address")
+	callCmd.Flags().StringVarP(&dataFlag, "data", "d", "", "hex data representation")
 }

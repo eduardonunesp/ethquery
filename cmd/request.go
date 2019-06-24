@@ -14,7 +14,7 @@ func postRequest(url string, method string, params []string) {
 	for _, param := range params {
 		var quoted string
 
-		if param != "true" && param != "false" {
+		if param != "true" && param != "false" && !strings.HasPrefix(param, "{") {
 			quoted = fmt.Sprintf(`"%s"`, param)
 		} else {
 			quoted = param
@@ -29,7 +29,7 @@ func postRequest(url string, method string, params []string) {
 	))
 
 	if verboseFlag {
-		fmt.Println(string(jsonStr))
+		fmt.Printf(">> %s\n", string(jsonStr))
 	}
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
@@ -42,5 +42,10 @@ func postRequest(url string, method string, params []string) {
 	defer resp.Body.Close()
 
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(body))
+
+	if verboseFlag {
+		fmt.Printf("<< %s\n", string(body))
+	} else {
+		fmt.Println(string(body))
+	}
 }
