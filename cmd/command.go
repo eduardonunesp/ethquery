@@ -246,6 +246,29 @@ var transactionCountCmd = &cobra.Command{
 	},
 }
 
+var balanceCmd = &cobra.Command{
+	Use:   "balance <address>",
+	Short: "Returns the balance for the given address",
+	Args:  cobra.MinimumNArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		address := args[0]
+		configurationList := config.Load()
+		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
+
+		if err != nil {
+			return err
+		}
+
+		postRequest(
+			currentConfiguration.URL,
+			"eth_getBalance",
+			[]string{address},
+		)
+
+		return nil
+	},
+}
+
 var dataFlag string
 var toAddressFlag string
 var callCmd = &cobra.Command{
@@ -283,6 +306,7 @@ func init() {
 		netVersionCmd,
 		gasPriceCmd,
 		transactionCountCmd,
+		balanceCmd,
 		callCmd,
 	)
 

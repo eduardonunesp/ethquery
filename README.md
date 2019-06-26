@@ -78,6 +78,7 @@ Usage:
 
 Available Commands:
   accounts           Returns a list of addresses owned by client
+  balance            Returns the balance for the given address
   blockbyhash        Returns the information about a transaction requested by transaction hash
   blockbynumber      Returns information about a block by block number
   blocknumber        Returns the number of most recent block
