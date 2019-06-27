@@ -8,8 +8,9 @@ import (
 )
 
 var blockNumberCmd = &cobra.Command{
-	Use:   "blocknumber",
-	Short: "Returns the number of most recent block",
+	Use:     "blocknumber",
+	Aliases: []string{"n"},
+	Short:   "Returns the number of most recent block",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
 		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
@@ -29,9 +30,10 @@ var blockNumberCmd = &cobra.Command{
 }
 
 var blockByNumberCmd = &cobra.Command{
-	Use:   "blockbynumber <block number hex|block number decimal>",
-	Short: "Returns information about a block by block number",
-	Args:  cobra.MinimumNArgs(1),
+	Use:     "blockbynumber <block number hex|block number decimal>",
+	Aliases: []string{"bn"},
+	Short:   "Returns information about a block by block number",
+	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		blockNumber := args[0]
 		var full string
@@ -58,9 +60,10 @@ var blockByNumberCmd = &cobra.Command{
 }
 
 var blockByHashCmd = &cobra.Command{
-	Use:   "blockbyhash <block hash>",
-	Short: "Returns the information about a transaction requested by transaction hash",
-	Args:  cobra.MinimumNArgs(1),
+	Use:     "blockbyhash <block hash>",
+	Aliases: []string{"bh"},
+	Short:   "Returns the information about a transaction requested by transaction hash",
+	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		blockHash := args[0]
 		var full string
@@ -89,9 +92,10 @@ var blockByHashCmd = &cobra.Command{
 }
 
 var codeCmd = &cobra.Command{
-	Use:   "code <contract address>",
-	Short: "Returns code at a given address",
-	Args:  cobra.MinimumNArgs(1),
+	Use:     "code <contract address>",
+	Aliases: []string{"co"},
+	Short:   "Returns code at a given address",
+	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		contractAddress := args[0]
 		configurationList := config.Load()
@@ -112,9 +116,10 @@ var codeCmd = &cobra.Command{
 }
 
 var tranactionByHashCmd = &cobra.Command{
-	Use:   "transactionbyhash <transaction hash>",
-	Short: "Returns the information about a transaction requested by transaction hash",
-	Args:  cobra.MinimumNArgs(1),
+	Use:     "transactionbyhash <transaction hash>",
+	Aliases: []string{"th"},
+	Short:   "Returns the information about a transaction requested by transaction hash",
+	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		transactionHash := args[0]
 		configurationList := config.Load()
@@ -135,9 +140,10 @@ var tranactionByHashCmd = &cobra.Command{
 }
 
 var transactionReceiptCmd = &cobra.Command{
-	Use:   "transactionreceipt <transaction hash>",
-	Short: "Returns the receipt of a transaction by transaction hash",
-	Args:  cobra.MinimumNArgs(1),
+	Use:     "transactionreceipt <transaction hash>",
+	Aliases: []string{"tr"},
+	Short:   "Returns the receipt of a transaction by transaction hash",
+	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		transactionHash := args[0]
 		configurationList := config.Load()
@@ -158,9 +164,10 @@ var transactionReceiptCmd = &cobra.Command{
 }
 
 var accountsCmd = &cobra.Command{
-	Use:   "accounts",
-	Short: "Returns a list of addresses owned by client",
-	Args:  cobra.MinimumNArgs(0),
+	Use:     "accounts",
+	Aliases: []string{"ac"},
+	Short:   "Returns a list of addresses owned by client",
+	Args:    cobra.MinimumNArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
 		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
@@ -180,9 +187,10 @@ var accountsCmd = &cobra.Command{
 }
 
 var netVersionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Returns the current network id",
-	Args:  cobra.MinimumNArgs(0),
+	Use:     "version",
+	Aliases: []string{"vr"},
+	Short:   "Returns the current network id",
+	Args:    cobra.MinimumNArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
 		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
@@ -202,9 +210,10 @@ var netVersionCmd = &cobra.Command{
 }
 
 var gasPriceCmd = &cobra.Command{
-	Use:   "gasprice",
-	Short: "Returns the current price per gas in wei",
-	Args:  cobra.MinimumNArgs(0),
+	Use:     "gasprice",
+	Aliases: []string{"gp"},
+	Short:   "Returns the current price per gas in wei",
+	Args:    cobra.MinimumNArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
 		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
@@ -224,9 +233,10 @@ var gasPriceCmd = &cobra.Command{
 }
 
 var transactionCountCmd = &cobra.Command{
-	Use:   "transactioncount <address>",
-	Short: "Returns the number of transactions sent from an address",
-	Args:  cobra.MinimumNArgs(1),
+	Use:     "transactioncount <address>",
+	Aliases: []string{"tc"},
+	Short:   "Returns the number of transactions sent from an address",
+	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		address := args[0]
 		configurationList := config.Load()
@@ -247,9 +257,10 @@ var transactionCountCmd = &cobra.Command{
 }
 
 var balanceCmd = &cobra.Command{
-	Use:   "balance <address>",
-	Short: "Returns the balance for the given address",
-	Args:  cobra.MinimumNArgs(1),
+	Use:     "balance <address>",
+	Aliases: []string{"ba"},
+	Short:   "Returns the balance for the given address",
+	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		address := args[0]
 		configurationList := config.Load()
@@ -272,8 +283,9 @@ var balanceCmd = &cobra.Command{
 var dataFlag string
 var toAddressFlag string
 var callCmd = &cobra.Command{
-	Use:   "call",
-	Short: "Static call a function on contract",
+	Use:     "call",
+	Aliases: []string{"ca"},
+	Short:   "Static call a function on contract",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configurationList := config.Load()
 		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
