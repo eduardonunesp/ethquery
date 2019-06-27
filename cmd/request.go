@@ -11,6 +11,12 @@ import (
 func postRequest(url string, method string, params []string) {
 	var paramsString []string
 
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Printf("%v\n", r)
+		}
+	}()
+
 	for _, param := range params {
 		var quoted string
 
