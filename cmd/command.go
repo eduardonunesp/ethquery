@@ -257,12 +257,18 @@ var transactionCountCmd = &cobra.Command{
 }
 
 var balanceCmd = &cobra.Command{
-	Use:     "balance <address>",
+	Use:     "balance <address> <tag>",
 	Aliases: []string{"ba"},
 	Short:   "Returns the balance for the given address",
 	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		address := args[0]
+		tag := "latest"
+
+		if len(args) == 2 {
+			tag = args[1]
+		}
+
 		configurationList := config.Load()
 		currentConfiguration, err := configurationList.GetCurrent(configurationFlag)
 
@@ -273,7 +279,7 @@ var balanceCmd = &cobra.Command{
 		postRequest(
 			currentConfiguration.URL,
 			"eth_getBalance",
-			[]string{address},
+			[]string{address, tag},
 		)
 
 		return nil
