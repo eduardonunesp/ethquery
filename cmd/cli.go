@@ -12,10 +12,12 @@ var rootCmd = &cobra.Command{
 }
 
 var verboseFlag bool
+var curlCommandFlag bool
 var configurationFlag string
 
 func Execute() {
 	rootCmd.PersistentFlags().BoolVarP(&verboseFlag, "verbose", "v", false, "verbose output")
+	rootCmd.PersistentFlags().BoolVarP(&curlCommandFlag, "curl", "C", false, "curl command example")
 	rootCmd.PersistentFlags().StringVarP(&configurationFlag, "configuration", "c", "", "force use another configuration for current command")
 
 	if err := rootCmd.Execute(); err != nil {

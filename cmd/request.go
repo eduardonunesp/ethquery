@@ -34,6 +34,10 @@ func postRequest(url string, method string, params []string) {
 		method, strings.Join(paramsString, ","),
 	))
 
+	if curlCommandFlag {
+		fmt.Printf("curl -X POST --data '%s' %s  \n", string(jsonStr), url)
+	}
+
 	if verboseFlag {
 		fmt.Printf(">> %s\n", string(jsonStr))
 	}
