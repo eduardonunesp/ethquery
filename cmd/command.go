@@ -288,6 +288,7 @@ var balanceCmd = &cobra.Command{
 
 var dataFlag string
 var toAddressFlag string
+var fromAddressFlag string
 var callCmd = &cobra.Command{
 	Use:     "call",
 	Aliases: []string{"ca"},
@@ -300,12 +301,18 @@ var callCmd = &cobra.Command{
 			return err
 		}
 
+		var params string
+
+		if len(fromAddressFlag) > 0 {
+			params = fmt.Sprintf(`{"from": "%s", "to":"%s", "data": "%s"}`, fromAddressFlag, toAddressFlag, dataFlag)
+		} else {
+			params = fmt.Sprintf(`{"to":"%s", "data": "%s"}`, toAddressFlag, dataFlag)
+		}
+
 		postRequest(
 			currentConfiguration.URL,
 			"eth_call",
-			[]string{
-				fmt.Sprintf(`{"to":"%s", "data": "%s"}`, toAddressFlag, dataFlag),
-			},
+			[]string{params},
 		)
 
 		return nil
@@ -328,6 +335,7 @@ func init() {
 		callCmd,
 	)
 
+	callCmd.Flags().StringVarP(&fromAddressFlag, "from", "f", "", "from address")
 	callCmd.Flags().StringVarP(&toAddressFlag, "to", "t", "", "to address")
 	callCmd.Flags().StringVarP(&dataFlag, "data", "d", "", "hex data representation")
 }
